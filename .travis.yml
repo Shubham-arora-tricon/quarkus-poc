@@ -24,5 +24,6 @@ install:
     ${GRAALVM_HOME}/bin/gu install native-image
     sudo apt-get install build-essential libz-dev zlib1g-dev
 script:
-  - mvn verify -Pnative
   - mvn package -Pnative
+  - docker build -f src/main/docker/Dockerfile.native -t quarkus-quickstart/getting-started:${TRAVIS_BUILD_ID} .
+  - docker run -i --rm -p 8089:8089 quarkus-quickstart/getting-started
