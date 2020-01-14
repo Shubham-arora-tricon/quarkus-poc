@@ -6,6 +6,8 @@ language: java
 jdk:
   - openjdk8
 
+sudo: true
+
 env:
   - GRAALVM_VERSION="19.2.1"
 
@@ -17,6 +19,8 @@ install:
     curl -LJ "https://github.com/oracle/graal/releases/download/vm-$GRAALVM_VERSION/graalvm-ce-$DOWNLOAD_OS_NAME-amd64-$GRAALVM_VERSION.tar.gz" --output graalvm.tar.gz
     tar -xzf graalvm.tar.gz
     export JAVA_HOME="$(pwd)/graalvm-ce-$GRAALVM_VERSION"
-    gu install native-image
+    export GRAALVM_HOME=$HOME/Development/graalvm/
+    ${GRAALVM_HOME}/bin/gu install native-image
+    sudo apt-get install build-essential libz-dev zlib1g-dev
 script:
   - mvn package -Pnative
