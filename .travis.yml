@@ -1,0 +1,21 @@
+language: java
+
+services:
+  - docker
+
+dist: trusty
+
+env:
+  - GRAALVM_VERSION = 19.2.1
+
+os:
+  - linux
+
+cache:
+  directories:
+    - $HOME/.m2
+
+before_install:
+  - curl -LJ "https://github.com/oracle/graal/releases/download/vm-$GRAALVM_VERSION/graalvm-ce-linux-amd64-$GRAALVM_VERSION.tar.gz" --output graalvm.tar.gz
+  - tar -xzf graalvm.tar.gz
+  - export JAVA_HOME="$(pwd)/graalvm-ce-$GRAALVM_VERSION"
