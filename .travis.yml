@@ -16,6 +16,7 @@ install:
     echo $TRAVIS_OS_NAME
     curl -LJ "https://github.com/oracle/graal/releases/download/vm-$GRAALVM_VERSION/graalvm-ce-$DOWNLOAD_OS_NAME-amd64-$GRAALVM_VERSION.tar.gz" --output graalvm.tar.gz
     tar -xzf graalvm.tar.gz
+    gu install native-image
 script:
   - export JAVA_HOME="$(pwd)/graalvm-ce-$GRAALVM_VERSION"
   - mvn package -Pnative
