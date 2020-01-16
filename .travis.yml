@@ -26,6 +26,6 @@ install:
 script:
   - mvn package -Pnative
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build -f src/main/docker/Dockerfile.native -t shubhamtricon/quarkus-native:${TRAVIS_BUILD_ID} .
-  - docker tag shubhamtricon/quarkus-native:${TRAVIS_BUILD_ID} shubhamtricon/quarkus-native:${TRAVIS_BUILD_ID}
-  - docker push shubhamtricon/quarkus-native:${TRAVIS_BUILD_ID}
+  - docker build -f src/main/docker/Dockerfile.native -t shubhamtricon/quarkus-jvm:${TRAVIS_BUILD_ID} .
+  - docker tag shubhamtricon/quarkus-jvm:${TRAVIS_BUILD_ID} shubhamtricon/quarkus-jvm:${TRAVIS_BUILD_ID}
+  - docker push shubhamtricon/quarkus-jvm:${TRAVIS_BUILD_ID}
