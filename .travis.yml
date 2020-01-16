@@ -24,7 +24,7 @@ install:
     ${GRAALVM_HOME}/bin/gu install native-image
     sudo apt-get install build-essential libz-dev zlib1g-dev
 script:
-  - mvn package -Pnative
+  - mvn package
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker build -f src/main/docker/Dockerfile.native -t shubhamtricon/quarkus-jvm:${TRAVIS_BUILD_ID} .
   - docker tag shubhamtricon/quarkus-jvm:${TRAVIS_BUILD_ID} shubhamtricon/quarkus-jvm:${TRAVIS_BUILD_ID}
